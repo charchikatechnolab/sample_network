@@ -62,9 +62,24 @@ class IndexUnit{
         $result = $objIndexUnitModel->get_faq($pairid);
         return $result;
     }
-    public function ad_click($ip,$click_count){
+    public function ad_click($ip,$time_stamp){
         $objIndexUnitModel = $this->objIndexUnitModel;
-        $result = $objIndexUnitModel->ad_click($ip,$click_count);
+        $result = $objIndexUnitModel->ad_click($ip,$time_stamp);
+        return $result;
+    }
+    public function get_adclick($ip){
+        $objIndexUnitModel = $this->objIndexUnitModel;
+        $result = $objIndexUnitModel->get_adclick($ip);
+        return $result;
+    }
+    public function get_suspect($ip){
+        $objIndexUnitModel = $this->objIndexUnitModel;
+        $result = $objIndexUnitModel->get_suspect($ip);
+        return $result;
+    }
+    public function insert_suspected($ip){
+        $objIndexUnitModel = $this->objIndexUnitModel;
+        $result = $objIndexUnitModel->insert_suspected($ip);
         return $result;
     }
 }

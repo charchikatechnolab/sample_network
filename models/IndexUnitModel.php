@@ -97,10 +97,34 @@
             $result = $conn->query($query);
             return $result;
         }
-        //get invalid click faq
-        public function ad_click($ip,$click_count){
+        //get invalid click
+        public function ad_click($ip,$time_stamp){
             $conn = $this->conn;
-            $query = "INSERT INTO `invalid_click`(`ip`, `click_count`, `local_time_stamp`) VALUES ('','',LOCALTIMESTAMP)";
+            $query = "INSERT INTO `invalid_click`(`ip`, `click_count`, `local_time_stamp`) VALUES ('$ip','1','$time_stamp')";
+            $result = $conn->query($query);
+            return $result;
+        }
+        public function get_adclick($ip){
+            $conn = $this->conn;
+            $query = "select * from invalid_click where ip = '$ip'";
+            $result = $conn->query($query);
+            return $result;
+        }
+        public function get_suspect($ip){
+            $conn = $this->conn;
+            $query = "SELECT *   FROM `suspected_ip`  where ip = '$ip'";
+            $result = $conn->query($query);
+            if($result->num_rows > 0){
+                $row = $result->fetch_assoc();
+                return 1;
+            }else{
+                return 0;
+            }   
+            
+        }
+        public function insert_suspected($ip){
+            $conn = $this->conn;
+            $query = "INSERT INTO `suspected_ip`( `ip`) VALUES ('$ip')";
             $result = $conn->query($query);
             return $result;
         }

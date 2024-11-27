@@ -1,0 +1,13 @@
+
+
+<?php
+if (isset($_POST)) {
+   include $_SERVER['DOCUMENT_ROOT'] . "/common/CommonFunction.php";
+   include CONTROLLERS_PATH . "/IndexUnit.php";
+   $obj_index = new IndexUnit("analysis");
+   $json = json_decode($_POST['json'],true);
+   $title =  $json['title'];
+   $region = $json['region'];
+   $obj_index->analysis($title,$region);
+}
+?>
