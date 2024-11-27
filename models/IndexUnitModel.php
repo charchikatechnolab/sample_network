@@ -100,7 +100,9 @@
         //get invalid click
         public function ad_click($ip,$time_stamp){
             $conn = $this->conn;
-            $query = "INSERT INTO `invalid_click`(`ip`, `click_count`, `local_time_stamp`) VALUES ('$ip','1','$time_stamp')";
+            $cur_date = date("Y-m-d");
+            $query = "INSERT INTO `invalid_click`(`ip`, `click_count`, `local_time_stamp`,`server_date`) VALUES ('$ip','1','$time_stamp','$cur_date' )";
+           
             $result = $conn->query($query);
             return $result;
         }
@@ -124,7 +126,8 @@
         }
         public function insert_suspected($ip){
             $conn = $this->conn;
-            $query = "INSERT INTO `suspected_ip`( `ip`) VALUES ('$ip')";
+            $cur_date = date("Y-m-d");
+            $query = "INSERT INTO `suspected_ip`( `ip`,`server_date`) VALUES ('$ip','$cur_date')";
             $result = $conn->query($query);
             return $result;
         }
