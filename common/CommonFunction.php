@@ -1,8 +1,7 @@
 <?php
 //session_start();
 //SERVER PATH
-DEFINE('SERVER_PATH', $_SERVER['DOCUMENT_ROOT'] . '/cmto');
-DEFINE('SERVER_PATH', $_SERVER['DOCUMENT_ROOT']);
+DEFINE('SERVER_PATH', $_SERVER['DOCUMENT_ROOT'] . '/sample_network');
 DEFINE('CONTROLLERS_PATH', SERVER_PATH . '/controllers');
 DEFINE('MODELS_PATH', SERVER_PATH . '/models');
 DEFINE('COMMON_PATH', SERVER_PATH . '/common');
@@ -19,8 +18,7 @@ $protocol = 'http://';
 if (isset($_SERVER['HTTPS'])) {
   $protocol = 'https://';
 }
-DEFINE('SITE_PATH', $protocol . $_SERVER['HTTP_HOST'] . '/cmto');
-DEFINE('SITE_PATH', $protocol . $_SERVER['HTTP_HOST']);
+DEFINE('SITE_PATH', $protocol . $_SERVER['HTTP_HOST'] . '/sample_network');
 DEFINE('ADMIN_SITE_PATH', SITE_PATH . '/admin');
 DEFINE('ADMIN_VIEW_SITE_PATH', ADMIN_SITE_PATH . '/view');
 DEFINE('ADMIN_CSS_PATH', ADMIN_SITE_PATH . '/css');

@@ -62,5 +62,10 @@ class IndexUnit{
         $result = $objIndexUnitModel->get_faq($pairid);
         return $result;
     }
+    public function ad_click($ip,$click_count){
+        $objIndexUnitModel = $this->objIndexUnitModel;
+        $result = $objIndexUnitModel->ad_click($ip,$click_count);
+        return $result;
+    }
 }
 ?>

@@ -97,5 +97,12 @@
             $result = $conn->query($query);
             return $result;
         }
+        //get invalid click faq
+        public function ad_click($ip,$click_count){
+            $conn = $this->conn;
+            $query = "INSERT INTO `invalid_click`(`ip`, `click_count`, `local_time_stamp`) VALUES ('','',LOCALTIMESTAMP)";
+            $result = $conn->query($query);
+            return $result;
+        }
     }
 ?>

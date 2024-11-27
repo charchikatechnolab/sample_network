@@ -6,7 +6,7 @@ class Connection
     $servername = 'localhost';
     $username = 'root';
     $password = '';
-    $db = "allconvert";
+    $db = "sample_network";
 
     $conn = new mysqli($servername, $username, $password, $db);
 
