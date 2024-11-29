@@ -67,9 +67,14 @@ class IndexUnit{
         $result = $objIndexUnitModel->ad_click($ip,$time_stamp);
         return $result;
     }
-    public function get_adclick($ip){
+    public function get_adclick_today($ip){
         $objIndexUnitModel = $this->objIndexUnitModel;
-        $result = $objIndexUnitModel->get_adclick($ip);
+        $result = $objIndexUnitModel->get_adclick_today($ip);
+        return $result;
+    }
+    public function ip_exist($ip){
+        $objIndexUnitModel = $this->objIndexUnitModel;
+        $result = $objIndexUnitModel->ip_exist($ip);
         return $result;
     }
     public function get_suspect($ip){
@@ -77,9 +82,9 @@ class IndexUnit{
         $result = $objIndexUnitModel->get_suspect($ip);
         return $result;
     }
-    public function insert_suspected($ip){
+    public function insert_suspected($ip,$ip_exist){
         $objIndexUnitModel = $this->objIndexUnitModel;
-        $result = $objIndexUnitModel->insert_suspected($ip);
+        $result = $objIndexUnitModel->insert_suspected($ip,$ip_exist);
         return $result;
     }
 }

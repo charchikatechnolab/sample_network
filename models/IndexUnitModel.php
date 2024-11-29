@@ -102,19 +102,30 @@
             $conn = $this->conn;
             $cur_date = date("Y-m-d");
             $query = "INSERT INTO `invalid_click`(`ip`, `click_count`, `local_time_stamp`,`server_date`) VALUES ('$ip','1','$time_stamp','$cur_date' )";
-           
             $result = $conn->query($query);
             return $result;
         }
-        public function get_adclick($ip){
+        public function get_adclick_today($ip){
             $conn = $this->conn;
-            $query = "select * from invalid_click where ip = '$ip'";
+            $cur_date = date("Y-m-d");
+            $query = "select * from invalid_click where ip = '$ip' and server_date = '$cur_date' and reset_flag = 0 ";
             $result = $conn->query($query);
             return $result;
+        }
+        public function ip_exist($ip){
+            $conn = $this->conn;
+            $cur_date = date("Y-m-d");
+            $query = "select * from suspected_ip where ip = '$ip' ";
+            $result = $conn->query($query);
+            if($result->num_rows > 0){
+                return 1;
+            }else{
+                return 0;
+            }   
         }
         public function get_suspect($ip){
             $conn = $this->conn;
-            $query = "SELECT *   FROM `suspected_ip`  where ip = '$ip'";
+            $query = "SELECT *   FROM `suspected_ip`  where ip = '$ip' and adshow=0";
             $result = $conn->query($query);
             if($result->num_rows > 0){
                 $row = $result->fetch_assoc();
@@ -124,12 +135,19 @@
             }   
             
         }
-        public function insert_suspected($ip){
+        public function insert_suspected($ip,$ip_exist){
             $conn = $this->conn;
             $cur_date = date("Y-m-d");
-            $query = "INSERT INTO `suspected_ip`( `ip`,`server_date`) VALUES ('$ip','$cur_date')";
-            $result = $conn->query($query);
+            if($ip_exist == 1){
+                $query = "UPDATE `suspected_ip` SET `adshow`= 0 where `ip` = '$ip'";
+                $result = $conn->query($query);
+            }else{
+                $query = "INSERT INTO `suspected_ip`( `ip`,`server_date`,`adshow`) VALUES ('$ip','$cur_date',0)";
+                $result = $conn->query($query);
+            }
+            
             return $result;
         }
+
     }
 ?>
